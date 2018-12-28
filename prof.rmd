@@ -24,7 +24,7 @@ prof = read_csv("prof.csv") %>% mutate(date = mdy(date))
 
 ## Just likes
 
-Make the plot
+Make and save the plot
 ```{r, fig.height = 7, fig.width = 15}
 ggplot(data = prof,
        aes(x = date,
@@ -35,10 +35,7 @@ ggplot(data = prof,
        y = "Number of Likes",
        color = "") +
   theme_bw()
-```
 
-Save the plot
-```{r}
 ggsave("likes.png")
 ```
 
@@ -51,7 +48,7 @@ prof = data.frame(date = c(prof$date, prof$date),
                   count = c(prof$likes, prof$comments))
 ```
 
-Make the plot
+Make and save the plot
 ```{r, fig.height = 7, fig.width = 15}
 ggplot(data = prof,
        aes(x = date,
@@ -63,9 +60,6 @@ ggplot(data = prof,
        y = "Count",
        color = "") +
   theme_bw()
-```
 
-Save the plot
-```{r}
 ggsave("pics.png")
 ```
