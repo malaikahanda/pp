@@ -1,0 +1,44 @@
+---
+title: "prof"
+author: "Malaika Handa"
+date: "December 27, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+Load the libraries
+```{r}
+library(tidyverse)
+library(lubridate)
+```
+
+Load the data
+```{r}
+prof = read_csv("prof.csv") %>% mutate(date = mdy(date))
+```
+
+Format the data frame
+```{r}
+prof = data.frame(date = c(prof$date, prof$date),
+                  type = c(rep("Likes", nrow(prof)), rep("Comments", nrow(prof))),
+                  count = c(prof$likes, prof$comments))
+```
+
+Make the plot
+```{r, fig.height = 7, fig.width = 15}
+ggplot(data = prof,
+       aes(x = date,
+           y = count,
+           color = type)) +
+  geom_line(size = 1) +
+  labs(title = "Mali's profile pictures over time",
+       x = "",
+       y = "Count",
+       color = "") +
+  theme_bw()
+
+ggsave("pics.png")
+```
