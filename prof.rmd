@@ -44,6 +44,7 @@ ggsave("likes.png")
 
 ## Likes and comments
 
+Format the dataframe
 ```{r}
 prof = data.frame(date = c(prof$date, prof$date),
                   type = c(rep("Likes", nrow(prof)), rep("Comments", nrow(prof))),

@@ -155,6 +155,7 @@ library(lubridate)</code></pre>
 </div>
 <div id="likes-and-comments" class="section level2">
 <h2>Likes and comments</h2>
+<p>Format the dataframe</p>
 <pre class="r"><code>prof = data.frame(date = c(prof$date, prof$date),
                   type = c(rep(&quot;Likes&quot;, nrow(prof)), rep(&quot;Comments&quot;, nrow(prof))),
                   count = c(prof$likes, prof$comments))</code></pre>
