@@ -9,6 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
+## Set up
+
 Load the libraries
 ```{r}
 library(tidyverse)
@@ -20,7 +22,28 @@ Load the data
 prof = read_csv("prof.csv") %>% mutate(date = mdy(date))
 ```
 
-Format the data frame
+## Just likes
+
+Make the plot
+```{r, fig.height = 7, fig.width = 15}
+ggplot(data = prof,
+       aes(x = date,
+           y = likes)) +
+  geom_line(size = 1) +
+  labs(title = "Likes on Mali's profile pictures over time",
+       x = "",
+       y = "Number of Likes",
+       color = "") +
+  theme_bw()
+```
+
+Save the plot
+```{r}
+ggsave("likes.png")
+```
+
+## Likes and comments
+
 ```{r}
 prof = data.frame(date = c(prof$date, prof$date),
                   type = c(rep("Likes", nrow(prof)), rep("Comments", nrow(prof))),
@@ -39,6 +62,9 @@ ggplot(data = prof,
        y = "Count",
        color = "") +
   theme_bw()
+```
 
+Save the plot
+```{r}
 ggsave("pics.png")
 ```
